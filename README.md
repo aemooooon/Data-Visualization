@@ -1,1 +1,5 @@
-# Data-Visualization
+# Some notes
+* crawls
+* numpy
+* pandas
+* matplotlib
