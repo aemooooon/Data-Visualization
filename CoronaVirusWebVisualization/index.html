@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoronaVirus 2019</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type="text/javascript" src="./dist/echarts.js"></script>
+    <script type="text/javascript" src="./map/js/china.js"></script>
+    <script type="text/javascript" src="./map/js/province/hubei.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row justify-content-center">
+            <h5>2019新冠病毒</h5>
+        </div>
+        <div class="row justify-content-center">
+            <h3>疫情实时动态</h3>
+        </div>
+        <div class="row justify-content-center"><small>截止&nbsp;<span id="updatetime"></span>&nbsp;全国数据统计</small></div>
+        <div class="row">&nbsp;</div>
+        <div class="row justify-content-center">
+            <div class="col-sm text-center font_weight_bold">
+                <small><span id="compare_y_a"></span></small><br>
+                <span id="current_a" class="color_a font_georgia font_size_16"> </span><br>
+                现存确诊
+            </div>
+            <div class="col-sm text-center font_weight_bold">
+                <small><span id="compare_y_b"> </span></small><br>
+                <span id="current_b" class="color_b font_georgia font_size_16"> </span><br>
+                现存疑似
+            </div>
+            <div class="col-sm text-center font_weight_bold">
+                <small><span id="compare_y_c"> </span></small><br>
+                <span id="current_c" class="color_c font_georgia font_size_16"> </span><br>
+                现存重症
+            </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row justify-content-center font_weight_bold">
+            <div class="col-sm text-center">
+                <small><span id="compare_y_d"> </span></small><br>
+                <span id="current_d" class="color_d font_georgia font_size_16"> </span><br>
+                累计确诊
+            </div>
+            <div class="col-sm text-center font_weight_bold">
+                <small><span id="compare_y_e"> </span></small><br>
+                <span id="current_e" class="color_e font_georgia font_size_16"> </span><br>
+                累计死亡
+            </div>
+            <div class="col-sm text-center font_weight_bold">
+                <small><span id="compare_y_f"> </span></small><br>
+                <span id="current_f" class="color_f font_georgia font_size_16"> </span><br>
+                累计治愈
+            </div>
+        </div>
+        <div class="row"><br><br><br></div>
+
+        <div class="row">
+            <div class="col-sm">
+                <div class="row justify-content-center">
+                    <h3>国内疫情地图（现存确诊）</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div id="china_container"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row justify-content-center">
+                    <h3>国内疫情地图（累计确诊）</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div id="china_container1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row"><br><br><br></div>
+
+        <div class="row">
+            <div class="col-sm">
+                <div class="row justify-content-center">
+                    <h3>湖北省疫情地图（现存确诊）</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div id="hubei1"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row justify-content-center">
+                    <h3>湖北省疫情地图（累计确诊）</h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div id="hubei"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row"><br><br><br></div>
+
+    </div>
+    <script type="text/javascript" src="./js/model.js"></script>
+</body>
+
+</html>

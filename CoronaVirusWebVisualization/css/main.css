@@ -1,0 +1,40 @@
+.font_georgia {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.font_size_16 {
+    font-size: 1.6em;
+}
+
+.font_weight_bold {
+    font-weight: bold;
+}
+
+.color_a {
+    color: #e23228;
+}
+
+.color_b {
+    color: #e86d28;
+}
+
+.color_c {
+    color: #90473d;
+}
+
+.color_d {
+    color: #9d1c21;
+}
+
+.color_e {
+    color: #4b5c80;
+}
+
+.color_f {
+    color: #60c0ac;
+}
+
+#china_container, #china_container1, #hubei, #hubei1 {
+    min-width: 400px;
+    min-height: 300px;
+}
