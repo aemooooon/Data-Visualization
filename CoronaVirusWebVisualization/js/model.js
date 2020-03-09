@@ -157,7 +157,6 @@ function getHubeiCurrentConfirmed() {
             for (let i = 0; i < myJson["results"].length; i++) {
                 if (myJson["results"][i]["provinceName"] === '湖北省') {
                     temp = myJson["results"][i]["cities"];
-                    console.log(temp);
                     for (let j = 0; j < temp.length; j++) {
                         if (temp[j]["cityName"] === '恩施州') {
                             jsonObj.push({ "name": '恩施土家族苗族自治州', "value": temp[j]["currentConfirmedCount"] });
@@ -187,7 +186,6 @@ function getHubeiConfirmed() {
             for (let i = 0; i < myJson["results"].length; i++) {
                 if (myJson["results"][i]["provinceName"] === '湖北省') {
                     temp = myJson["results"][i]["cities"];
-                    console.log(temp);
                     for (let j = 0; j < temp.length; j++) {
                         if (temp[j]["cityName"] === '恩施州') {
                             jsonObj.push({ "name": '恩施土家族苗族自治州', "value": temp[j]["confirmedCount"] });

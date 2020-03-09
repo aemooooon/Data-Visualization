@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NZ Map</title>
+    <script type="text/javascript" src="./dist/echarts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #main {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #ddd;
+        }
+
+        /*建议长宽比0.75，符合审美*/
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('main'));
+            myChart.showLoading();
+
+            $.get('./map/json/nzwithoutChathamIsland.json', function (nzJson) {
+                myChart.hideLoading();
+
+                echarts.registerMap('NZ', nzJson);
+                option = {
+                    title: {
+                        text: 'New Zealand Map',
+                        subtext: 'example',
+                        sublink: 'http://www.aemon.wang',
+                        left: 'right'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        showDelay: 0,
+                        transitionDuration: 0.2,
+                        formatter: function (params) {
+                            var value = (params.value + '').split('.');
+                            value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+                            return params.seriesName + '<br/>' + params.name + ': ' + value;
+                        }
+                    },
+                    visualMap: {
+                        left: 'right',
+                        min: 0,
+                        max: 100,
+                        inRange: {
+                            color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                        },
+                        text: ['High', 'Low'],           // 文本，默认为数值文本
+                        calculable: true
+                    },
+                    toolbox: {
+                        show: true,
+                        orient: 'horizontal',
+                        left: 'left',
+                        top: 'top',
+                    },
+                    series: [
+                        {
+                            name: 'New Zealand',
+                            type: 'map',
+                            zoom: 1.1,
+                            map: 'NZ',
+                            roam: false,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            },
+                            data: [
+                                { name: 'Chatham Islands', value: 50 },
+                                { name: 'Northland', value: 10 },
+                                { name: 'Auckland', value: 20 },
+                                { name: 'Waikato', value: 30 },
+                                { name: 'Bay of Plenty', value: 40 },
+                                { name: 'Gisborne', value: 50 },
+                                { name: 'Hawke\'s Bay', value: 60 },
+                                { name: 'Taranaki', value: 70 },
+                                { name: 'Wellington', value: 80 },
+                                { name: 'Manawatu-Wanganui', value: 90 },
+                                { name: 'Marlborough', value: 100 },
+                                { name: 'Tasman', value: 37 },
+                                { name: 'West Coast', value: 5 },
+                                { name: 'Canterbury', value: 21 },
+                                { name: 'Otago', value: 49 },
+                                { name: 'Southland', value: 81 }
+                            ]
+                        }
+                    ]
+                };
+
+                myChart.setOption(option);
+            });
+        </script>
+</body>
+
+</html>
