@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NZ Map</title>
+    <title>Australia Map</title>
     <script type="text/javascript" src="./dist/echarts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -22,8 +22,8 @@
         }
 
         #main {
-            width: 700px;
-            height: 700px;
+            width: 800px;
+            height: 600px;
             border: 1px solid #ddd;
         }
 
@@ -35,34 +35,32 @@
     <div id="main">
         <script type="text/javascript">
             var myChart = echarts.init(document.getElementById('main'));
-            var dataList = [
-                { name: 'Chatham Islands', value: 50 },
-                { name: 'Northland', value: 1 },
-                { name: 'Auckland', value: 20 },
-                { name: 'Waikato', value: 300 },
-                { name: 'Bay of Plenty', value: 40 },
-                { name: 'Gisborne', value: 500 },
-                { name: 'Hawke\'s Bay', value: 60 },
-                { name: 'Taranaki', value: 70 },
-                { name: 'Wellington', value: 8000 },
-                { name: 'Manawatu-Wanganui', value: 900 },
-                { name: 'Marlborough', value: 100 },
-                { name: 'Tasman', value: 7 },
-                { name: 'West Coast', value: 5 },
-                { name: 'Canterbury', value: 21 },
-                { name: 'Otago', value: 0 },
-                { name: 'Southland', value: 81 }
-            ];
-
             myChart.showLoading();
 
-            $.get('./map/json/nz.json', function (nzJson) {
+            $.get('./map/json/Australia.json', function (auJson) {
                 myChart.hideLoading();
 
-                echarts.registerMap('NZ', nzJson);
+                echarts.registerMap('Australia', auJson, {
+                    // 因为这三个岛离的远，所以自定义新位置，让地图显得不那么离奇
+                    'Heard Island and McDonald Islands': {
+                        left: 100,
+                        top: -30,
+                        width: 2
+                    },
+                    'Tasmania': {
+                        left: 160,
+                        top: -48,
+                        width: 10,
+                    },
+                    'Christmas Island': {
+                        left: 106,
+                        top: -18,
+                        width: 2
+                    }
+                });
                 option = {
                     title: {
-                        text: 'New Zealand Map',
+                        text: 'Australia Map',
                         subtext: 'example',
                         sublink: 'http://www.aemon.wang',
                         left: 'right'
@@ -89,31 +87,6 @@
                         ],
                         color: ['#62191d', '#b30000', '#d92626', '#ff8080', '#ffb3b3', '#ffffff']//取值范围的颜色
                     },
-                    geo: {
-                        map: 'NZ',
-                        roam: false,//不开启缩放和平移
-                        zoom: 1.23,//视角缩放比例
-                        label: {
-                            normal: {
-                                show: true,
-                                fontSize: '10',
-                                color: 'rgba(0,0,0,0.7)'
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                borderColor: 'rgba(0, 0, 0, 0.2)'
-                            },
-                            emphasis: {
-                                areaColor: '#F3B329',//鼠标选择区域颜色
-                                shadowOffsetX: 0,
-                                shadowOffsetY: 0,
-                                shadowBlur: 20,
-                                borderWidth: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    },
                     toolbox: {
                         show: true,
                         orient: 'horizontal',
@@ -122,10 +95,28 @@
                     },
                     series: [
                         {
-                            name: 'New Zealand',
+                            name: 'Australia',
                             type: 'map',
-                            geoIndex: 0,
-                            data: dataList,
+                            zoom: 1.1,
+                            map: 'Australia',
+                            roam: false,
+                            emphasis: {
+                                label: {
+                                    show: true
+                                }
+                            },
+                            data: [
+                                { name: 'Heard Island and McDonald Islands', value: 50 },
+                                { name: 'Tasmania', value: 100 },
+                                { name: 'Christmas Island', value: 2000 },
+                                { name: 'Queensland', value: 300 },
+                                { name: 'New South Wales', value: 0 },
+                                { name: 'Victoria', value: 5000 },
+                                { name: 'Northern Territory', value: 10001},
+                                { name: 'South Australia', value: 40 },
+                                { name: 'Western Australia', value: 80 },
+                                { name: 'Ashmore and Cartier Islands', value: 890 }
+                            ]
                         }
                     ]
                 };

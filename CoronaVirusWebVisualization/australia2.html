@@ -22,8 +22,8 @@
         }
 
         #main {
-            width: 700px;
-            height: 700px;
+            width: 800px;
+            height: 600px;
             border: 1px solid #ddd;
         }
 
@@ -36,33 +36,27 @@
         <script type="text/javascript">
             var myChart = echarts.init(document.getElementById('main'));
             var dataList = [
-                { name: 'Chatham Islands', value: 50 },
-                { name: 'Northland', value: 1 },
-                { name: 'Auckland', value: 20 },
-                { name: 'Waikato', value: 300 },
-                { name: 'Bay of Plenty', value: 40 },
-                { name: 'Gisborne', value: 500 },
-                { name: 'Hawke\'s Bay', value: 60 },
-                { name: 'Taranaki', value: 70 },
-                { name: 'Wellington', value: 8000 },
-                { name: 'Manawatu-Wanganui', value: 900 },
-                { name: 'Marlborough', value: 100 },
-                { name: 'Tasman', value: 7 },
-                { name: 'West Coast', value: 5 },
-                { name: 'Canterbury', value: 21 },
-                { name: 'Otago', value: 0 },
-                { name: 'Southland', value: 81 }
+                { name: 'Heard Island and McDonald Islands', value: 50 },
+                { name: 'Tasmania', value: 100 },
+                { name: 'Christmas Island', value: 2000 },
+                { name: 'Queensland', value: 300 },
+                { name: 'New South Wales', value: 0 },
+                { name: 'Victoria', value: 5000 },
+                { name: 'Northern Territory', value: 10001 },
+                { name: 'South Australia', value: 40 },
+                { name: 'Western Australia', value: 80 },
+                { name: 'Ashmore and Cartier Islands', value: 890 }
             ];
 
             myChart.showLoading();
 
-            $.get('./map/json/nz.json', function (nzJson) {
+            $.get('./map/json/Australia.json', function (auJson) {
                 myChart.hideLoading();
 
-                echarts.registerMap('NZ', nzJson);
+                echarts.registerMap('AU', auJson);
                 option = {
                     title: {
-                        text: 'New Zealand Map',
+                        text: 'Australia Map',
                         subtext: 'example',
                         sublink: 'http://www.aemon.wang',
                         left: 'right'
@@ -90,9 +84,9 @@
                         color: ['#62191d', '#b30000', '#d92626', '#ff8080', '#ffb3b3', '#ffffff']//取值范围的颜色
                     },
                     geo: {
-                        map: 'NZ',
+                        map: 'AU',
                         roam: false,//不开启缩放和平移
-                        zoom: 1.23,//视角缩放比例
+                        zoom: 1,//视角缩放比例
                         label: {
                             normal: {
                                 show: true,
@@ -122,7 +116,7 @@
                     },
                     series: [
                         {
-                            name: 'New Zealand',
+                            name: 'Australia',
                             type: 'map',
                             geoIndex: 0,
                             data: dataList,

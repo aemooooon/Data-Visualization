@@ -72,7 +72,7 @@
             ]
             var myChart = echarts.init(document.getElementById('main'));
             function randomValue() {
-                return Math.round(Math.random() * 1000);
+                return Math.round((Math.random() * 99));
             }
             option = {
                 tooltip: {
@@ -81,15 +81,16 @@
                     }//数据格式化
                 },
                 visualMap: {
-                    min: 0,
-                    max: 1500,
-                    left: 'left',
-                    top: 'bottom',
-                    text: ['高', '低'],//取值范围的文字
-                    inRange: {
-                        color: ['#e0ffff', '#006edd']//取值范围的颜色
-                    },
-                    show: true//图注
+                    type: 'piecewise',
+                    pieces: [
+                        { min: 10000, label: '万人之上' }, // 不指定 max，表示 max 为无限大（Infinity）。
+                        { min: 1000, max: 9999, label: '盈千累万' },
+                        { min: 100, max: 999, label: '成百上千' },
+                        { min: 10, max: 99, label: '成群结队' },
+                        { min: 1, max: 9, label: '寥寥无几' },
+                        { min: 0, max: 0, label: '风平浪静' }     // 不指定 min，表示 min 为无限大（-Infinity）。
+                    ],
+                    color: ['#62191d', '#b30000', '#d92626', '#ff8080', '#ffb3b3', '#ffffff']//取值范围的颜色
                 },
                 geo: {
                     map: 'china',
