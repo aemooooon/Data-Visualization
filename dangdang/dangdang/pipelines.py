@@ -11,16 +11,27 @@ import pymysql
 # 2. edit connection under the pymysql lib/sitepackges/connection.py, change charset=utf8
 
 
+# class DangdangPipeline(object):
+#     def process_item(self, item, spider):
+#         conn = pymysql.connect(host="127.0.0.1", user="root", password="rootroot", database="hua")
+#         for i in range(0, len(item['title'])):
+#             title = item['title'][i]
+#             link = item['link'][i]
+#             comment = item['comment'][i]
+#             sql = "insert into bood(title, link, comment) values ('"+ title +"','"+ link +"', '"+ comment +"')"
+#             print(sql)
+#             conn.query(sql)
+#             conn.commit()
+#         conn.close()
+#         return item
+
 class DangdangPipeline(object):
     def process_item(self, item, spider):
-        conn = pymysql.connect(host="127.0.0.1", user="root", password="rootroot", database="hua")
         for i in range(0, len(item['title'])):
             title = item['title'][i]
             link = item['link'][i]
             comment = item['comment'][i]
-            sql = "insert into bood(title, link, comment) values ('"+ title +"','"+ link +"', '"+ comment +"')"
-            print(sql)
-            conn.query(sql)
-            conn.commit()
-        conn.close()
+            print('title: ', title)
+            print('link: ', link)
+            print('comment: ', comment)
         return item
